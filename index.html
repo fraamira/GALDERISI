@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Gianmarco Galderisi — Biologo Nutrizionista &amp; Fitness Coach</title>
+<meta name="description" content="Trasformo persone, non creo contenuti. Percorsi personalizzati di allenamento e nutrizione con il Dr. Gianmarco Galderisi, Biologo Nutrizionista.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#3b7fba;
+    --blue-deep:#274f74;
+    --ink:#3b3b3b;
+    --ink-black:#242424;
+    --bone:#f4f2ee;
+    --bone-2:#eae7e0;
+    --white:#ffffff;
+    --line:rgba(59,59,59,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink-black);
+    background:var(--bone);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Montserrat',sans-serif;
+    font-weight:800;
+    letter-spacing:-0.015em;
+    line-height:1.04;
+    text-transform:uppercase;
+  }
+  .accent-italic{
+    font-family:'Inter',sans-serif;
+    font-style:italic;
+    font-weight:500;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  @media(max-width:640px){.wrap{padding:0 22px;}}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:linear-gradient(180deg, rgba(18,18,18,0.62) 0%, rgba(18,18,18,0.28) 70%, rgba(18,18,18,0) 100%);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding:22px 0;
+  }
+  header.scrolled{
+    background:rgba(244,242,238,0.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 var(--line);
+    padding:12px 0;
+  }
+  .nav-inner{
+    max-width:1240px;margin:0 auto;padding:0 40px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  @media(max-width:640px){.nav-inner{padding:0 22px;}}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand img{height:56px;width:auto;transition:height .35s ease;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.35));}
+  header.scrolled .brand img{height:44px;}
+  .brand-text{font-family:'Montserrat';font-weight:800;font-size:15.5px;letter-spacing:0.005em;color:var(--white);text-transform:uppercase;line-height:1.15;text-shadow:0 1px 8px rgba(0,0,0,0.5);transition:color .35s ease, text-shadow .35s ease;}
+  .brand-text span{display:block;font-family:'Inter';font-weight:500;font-size:10.5px;letter-spacing:0.03em;color:rgba(255,255,255,0.82);text-transform:none;margin-top:3px;transition:color .35s ease;}
+  header.scrolled .brand-text{color:var(--ink-black);text-shadow:none;}
+  header.scrolled .brand-text span{color:var(--blue-deep);}
+  nav.links{display:flex;gap:38px;align-items:center;}
+  nav.links a:not(.nav-cta){font-size:14.5px;font-weight:600;color:var(--white);position:relative;padding:4px 0;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,0.45);transition:color .35s ease, text-shadow .35s ease;}
+  header.scrolled nav.links a:not(.nav-cta){color:var(--ink);text-shadow:none;}
+  nav.links a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .25s ease;}
+  nav.links a:not(.nav-cta):hover::after{width:100%;}
+  .nav-cta{
+    background:var(--ink-black);color:var(--white)!important;
+    padding:15px 30px;border-radius:100px;font-weight:700;font-size:13.5px;
+    letter-spacing:0.02em;line-height:1;display:inline-flex;align-items:center;justify-content:center;
+    white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,0.25);
+  }
+  .nav-cta:hover{background:var(--blue);}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .burger span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;box-shadow:0 1px 4px rgba(0,0,0,0.4);transition:background .35s ease;}
+  header.scrolled .burger span{background:var(--ink-black);box-shadow:none;}
+  @media(max-width:920px){
+    nav.links{position:fixed;top:0;right:-100%;width:78%;max-width:340px;height:100vh;
+      background:var(--ink-black);flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:0 44px;gap:28px;transition:right .4s cubic-bezier(.77,0,.18,1);}
+    nav.links.open{right:0;}
+    nav.links a{color:var(--white);font-size:20px;}
+    .nav-cta{background:var(--blue)!important;padding:16px 30px;}
+    .burger{display:block;z-index:200;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    background:#1e5488;overflow:hidden;
+  }
+  .hero-bg{position:absolute;inset:0;z-index:1;background:#1e5488;}
+  .hero-bg img{
+    width:100%;height:100%;object-fit:cover;object-position:62% 22%;
+  }
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg, rgba(14,28,42,0.88) 0%, rgba(14,28,42,0.72) 28%, rgba(14,28,42,0.22) 54%, rgba(14,28,42,0.08) 68%, rgba(14,28,42,0.3) 100%);
+  }
+  .hero-inner{
+    position:relative;z-index:3;width:100%;
+    padding:110px 40px 70px;
+  }
+  .hero-logo{width:clamp(190px,22vw,320px);height:auto;margin-bottom:18px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.4));}
+  .hero-copy{max-width:600px;}
+  .hero-copy .eyebrow{
+    font-size:12.5px;font-weight:600;color:#8fc3ec;letter-spacing:0.06em;margin-bottom:14px;text-transform:uppercase;
+  }
+  .hero-copy h1{
+    color:var(--white);font-size:clamp(32px,4vw,58px);
+  }
+  .hero-copy h1 em{color:#8fc3ec;font-style:normal;}
+  .hero-copy .sub{
+    font-family:'Inter',sans-serif;font-style:italic;font-weight:500;
+    color:rgba(255,255,255,0.88);font-size:clamp(17px,1.6vw,20px);line-height:1.5;max-width:500px;margin:18px 0 32px;
+  }
+  .hero-cta-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--blue);color:var(--white);padding:17px 32px;font-weight:700;font-size:14.5px;
+    letter-spacing:0.02em;border-radius:100px;border:1px solid var(--blue);transition:all .25s ease;
+  }
+  .btn-primary:hover{background:transparent;color:var(--blue);border-color:var(--white);}
+  .btn-ghost{
+    color:var(--white);padding:17px 28px;font-weight:600;font-size:14.5px;border:1px solid rgba(255,255,255,0.35);
+    border-radius:100px;transition:all .25s ease;
+  }
+  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,0.08);}
+  @media(max-width:900px){
+    .hero-bg img{object-position:68% 15%;}
+    .hero-bg::after{background:linear-gradient(180deg, rgba(14,28,42,0.35) 0%, rgba(14,28,42,0.55) 40%, rgba(14,28,42,0.94) 78%, rgba(14,28,42,0.98) 100%);}
+    .hero-inner{padding:120px 22px 60px;display:flex;flex-direction:column;justify-content:flex-end;min-height:100vh;}
+    .hero-logo{width:min(240px,58vw);margin-bottom:16px;}
+  }
+
+  /* ---------- MARQUEE STRIP ---------- */
+  .strip{
+    background:var(--blue);color:var(--white);padding:16px 0;overflow:hidden;white-space:nowrap;
+  }
+  .strip-inner{display:inline-flex;animation:marquee 24s linear infinite;}
+  .strip-inner span{font-family:'Montserrat';font-weight:700;font-size:14px;letter-spacing:0.03em;padding:0 34px;text-transform:uppercase;}
+  .strip-inner span:not(:last-child)::after{content:"—";margin-left:34px;opacity:.6;}
+  @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:130px 0;}
+  @media(max-width:640px){section{padding:80px 0;}}
+  .kicker{font-size:13px;font-weight:600;color:var(--blue-deep);letter-spacing:0.04em;margin-bottom:16px;text-transform:uppercase;}
+  .sec-title{font-size:clamp(30px,4vw,48px);color:var(--ink-black);max-width:760px;}
+  .sec-lede{font-family:'Inter',sans-serif;font-style:italic;font-size:19px;color:var(--ink);line-height:1.6;max-width:560px;margin-top:22px;}
+
+  /* ---------- CHI SONO ---------- */
+  #chisono{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:start;margin-top:64px;}
+  .about-photo{position:relative;}
+  .about-photo img{width:100%;filter:grayscale(6%);border-radius:28px;}
+  .about-photo .tag{
+    position:absolute;bottom:-30px;left:-24px;background:var(--ink-black);color:var(--white);
+    padding:20px 26px;max-width:270px;font-size:13.5px;line-height:1.55;font-weight:500;border-radius:18px;
+  }
+  .about-photo .tag .order-num{display:block;font-size:11px;color:rgba(255,255,255,0.55);font-weight:500;margin-bottom:10px;letter-spacing:0.01em;}
+  .about-photo .tag b{display:block;font-family:'Montserrat';font-size:15px;text-transform:uppercase;margin-bottom:6px;color:var(--blue);line-height:1.3;}
+  .about-copy p{font-size:16.5px;line-height:1.75;color:var(--ink);margin-bottom:22px;font-weight:400;}
+  .about-quote{
+    border-left:3px solid var(--blue);padding-left:24px;margin:36px 0;
+  }
+  .about-quote p{font-family:'Montserrat';font-weight:700;font-size:20px;text-transform:none;color:var(--ink-black);line-height:1.4;letter-spacing:-0.01em;}
+  .credentials{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px;}
+  .credentials div{background:var(--bone);border-radius:20px;padding:22px 24px;}
+  .credentials div b{display:block;font-family:'Montserrat';font-size:18px;color:var(--blue);margin-bottom:8px;line-height:1.25;text-transform:uppercase;letter-spacing:-0.01em;}
+  .credentials div span{font-size:13.5px;color:var(--ink);}
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:70px;}
+    .about-photo .tag{position:static;margin-top:18px;max-width:100%;}
+  }
+
+  /* ---------- IL METODO ---------- */
+  #metodo{background:var(--ink-black);color:var(--white);}
+  #metodo .kicker{color:var(--blue);}
+  #metodo .sec-title{color:var(--white);}
+  #metodo .sec-lede{color:rgba(255,255,255,0.7);}
+  .method-intro{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-bottom:64px;border-bottom:1px solid rgba(255,255,255,0.14);}
+  .method-intro p{font-size:16px;line-height:1.75;color:rgba(255,255,255,0.68);font-weight:400;}
+  .method-intro p strong{color:var(--white);}
+
+  .flip-grid{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .flip-card{
+    perspective:1600px;height:440px;
+  }
+  .flip-card-inner{
+    position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card:hover .flip-card-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute;inset:0;backface-visibility:hidden;border-radius:28px;
+    padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;
+    -webkit-backface-visibility:hidden;
+  }
+  .flip-front{
+    background:linear-gradient(180deg, rgba(20,20,20,0.15) 0%, rgba(15,15,15,0.85) 100%), var(--blue);
+    background-size:cover;background-position:center;
+    color:var(--white);
+  }
+  .flip-front.fit-bg{background-image:linear-gradient(180deg, rgba(15,15,15,0.1) 0%, rgba(10,10,10,0.9) 100%), url('images/method-fitness.jpg');}
+  .flip-front.nutri-bg{background-image:linear-gradient(180deg, rgba(15,15,15,0.1) 0%, rgba(10,10,10,0.9) 100%), url('images/method-nutrition.jpg');}
+  .flip-front .flip-icon{font-size:15px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.75);text-transform:uppercase;margin-bottom:auto;}
+  .flip-front h3{font-size:30px;color:var(--white);margin-bottom:12px;}
+  .flip-front p{font-family:'Inter',sans-serif;font-style:italic;font-size:16.5px;color:rgba(255,255,255,0.88);text-transform:none;line-height:1.5;}
+  .flip-front .flip-hint{margin-top:20px;font-size:12px;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
+  .flip-back{
+    background:var(--white);color:var(--ink-black);
+    transform:rotateY(180deg);justify-content:flex-start;
+  }
+  .flip-back h4{font-family:'Montserrat';font-weight:800;font-size:14px;color:var(--blue-deep);text-transform:uppercase;margin-bottom:22px;letter-spacing:0.02em;}
+  .flip-back ul{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .flip-back li{font-size:14.5px;line-height:1.5;color:var(--ink);padding-left:22px;position:relative;font-weight:400;}
+  .flip-back li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;background:var(--blue);border-radius:50%;}
+  @media(max-width:860px){
+    .method-intro{grid-template-columns:1fr;gap:24px;}
+    .flip-grid{grid-template-columns:1fr;}
+    .flip-card{height:auto;perspective:none;}
+    .flip-card-inner{position:static;transform:none!important;transition:none;}
+    .flip-face{position:static;backface-visibility:visible;transform:none!important;border-radius:28px;}
+    .flip-back{display:none;}
+    .flip-card.tapped .flip-back{display:flex;margin-top:16px;}
+    .flip-front .flip-hint{display:none;}
+  }
+
+  /* ---------- APPROCCIO / QUOTES ---------- */
+  #approccio{background:var(--bone-2);}
+  #approccio .sec-lede{color:var(--blue-deep);}
+  .quote-list{margin-top:60px;display:flex;flex-direction:column;}
+  .quote-row{
+    display:grid;grid-template-columns:70px 1fr;gap:30px;padding:34px 0;
+    border-bottom:1px solid var(--line);align-items:start;
+  }
+  .quote-row:first-child{border-top:1px solid var(--line);}
+  .quote-row .mark{font-family:'Inter',sans-serif;font-style:italic;font-size:48px;color:var(--blue);line-height:1;}
+  .quote-row p{font-family:'Montserrat';font-weight:700;font-size:21px;line-height:1.45;color:var(--ink-black);text-transform:none;letter-spacing:-0.01em;}
+  @media(max-width:640px){
+    .quote-row{grid-template-columns:1fr;gap:10px;}
+    .quote-row p{font-size:18px;}
+  }
+
+  /* ---------- RISULTATI / CASI REALI ---------- */
+  #risultati{background:var(--white);}
+  .case-list{margin-top:64px;display:flex;flex-direction:column;gap:110px;}
+  .case{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .case:nth-child(even){direction:rtl;}
+  .case:nth-child(even) > *{direction:ltr;}
+  .case-photo{overflow:hidden;position:relative;border-radius:28px;}
+  .case-photo img{width:100%;transition:transform .6s ease;border-radius:28px;}
+  .case-photo:hover img{transform:scale(1.035);}
+  .case-copy .case-index{font-family:'Montserrat';color:var(--blue);font-size:14px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.03em;}
+  .case-copy p{font-size:16.5px;line-height:1.75;color:var(--ink);font-weight:400;white-space:pre-line;}
+  .case-copy p strong{color:var(--ink-black);}
+  .stat-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .stat-badges .badge{
+    display:inline-flex;align-items:center;gap:7px;background:#e7f5ec;color:#1c7a43;
+    border:1px solid rgba(28,122,67,0.22);padding:9px 17px;border-radius:100px;
+    font-size:13px;font-weight:700;font-family:'Inter';
+  }
+  .stat-badges .badge::before{content:"↑";font-weight:800;color:#1c7a43;}
+  .stat-badges .badge.down::before{content:"↓";}
+  @media(max-width:860px){
+    .case,.case:nth-child(even){grid-template-columns:1fr;gap:26px;direction:ltr;}
+  }
+
+  /* ---------- RECENSIONI ---------- */
+  #recensioni{background:var(--blue);color:var(--white);}
+  #recensioni .kicker{color:rgba(255,255,255,0.75);}
+  #recensioni .sec-title{color:var(--white);}
+  .rev-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .rev-score{display:flex;align-items:center;gap:18px;}
+  .rev-score .num{font-family:'Montserrat';font-size:56px;font-weight:800;line-height:1;}
+  .rev-score .stars{color:#ffd85c;font-size:19px;letter-spacing:2px;}
+  .rev-score .stars + span{display:block;font-size:12.5px;color:rgba(255,255,255,0.75);margin-top:4px;}
+  .rev-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .rev-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);padding:30px 26px;border-radius:24px;}
+  .rev-card .stars{color:#ffd85c;font-size:14px;letter-spacing:2px;margin-bottom:14px;display:block;}
+  .rev-card p{font-size:14.5px;line-height:1.65;color:rgba(255,255,255,0.9);font-weight:400;margin-bottom:18px;}
+  .rev-card .who{font-size:13px;font-weight:700;color:var(--white);}
+  .rev-cta{margin-top:56px;text-align:center;}
+  .rev-cta a{
+    display:inline-block;background:var(--white);color:var(--blue-deep);padding:16px 34px;font-weight:700;
+    font-size:14.5px;border-radius:100px;letter-spacing:0.02em;transition:all .25s ease;
+  }
+  .rev-cta a:hover{background:var(--ink-black);color:var(--white);}
+  @media(max-width:860px){.rev-grid{grid-template-columns:1fr;}}
+
+  /* ---------- PRENOTA / CTA ---------- */
+  #prenota{background:var(--ink-black);color:var(--white);position:relative;overflow:hidden;}
+  .prenota-inner{
+    display:grid;grid-template-columns:1.2fr 0.8fr;gap:50px;align-items:center;
+  }
+  #prenota .kicker{color:var(--blue);}
+  #prenota h2{font-size:clamp(32px,4.6vw,54px);color:var(--white);}
+  #prenota p.sub{font-family:'Inter',sans-serif;font-style:italic;color:rgba(255,255,255,0.75);font-size:19px;line-height:1.6;margin:24px 0 36px;max-width:480px;}
+  .wa-btn{
+    display:inline-flex;align-items:center;gap:14px;background:#25D366;color:var(--ink-black);
+    padding:19px 32px;border-radius:100px;font-weight:700;font-size:16px;transition:transform .2s ease;
+  }
+  .wa-btn:hover{transform:translateY(-2px);}
+  .wa-btn svg{width:24px;height:24px;flex-shrink:0;}
+  .prenota-steps{display:flex;flex-direction:column;gap:14px;}
+  .prenota-steps div{padding:20px 24px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:20px;}
+  .prenota-steps b{display:block;font-family:'Montserrat';font-size:13px;color:var(--blue);margin-bottom:6px;text-transform:uppercase;}
+  .prenota-steps span{font-size:14.5px;color:rgba(255,255,255,0.72);}
+  @media(max-width:860px){
+    .prenota-inner{grid-template-columns:1fr;gap:44px;}
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink-black);border-top:1px solid rgba(255,255,255,0.12);padding:44px 0;color:rgba(255,255,255,0.55);}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;}
+  .foot-inner .fb{display:flex;align-items:center;gap:10px;}
+  .foot-inner img{height:26px;}
+  .foot-links{display:flex;gap:26px;flex-wrap:wrap;}
+  .foot-links a:hover{color:var(--white);}
+  .foot-piva{width:100%;text-align:center;padding-top:24px;margin-top:24px;border-top:1px solid rgba(255,255,255,0.1);font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.02em;}
+
+  /* whatsapp float */
+  .wa-float{
+    position:fixed;bottom:26px;right:26px;background:#25D366;width:58px;height:58px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.28);z-index:90;
+  }
+  .wa-float svg{width:28px;height:28px;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <img src="images/logo.png" alt="Gianmarco Galderisi logo">
+      <div class="brand-text">Gianmarco Galderisi<span>Biologo Nutrizionista · Fitness Coach</span></div>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#home" onclick="closeNav()">Home</a>
+      <a href="#chisono" onclick="closeNav()">Chi sono</a>
+      <a href="#metodo" onclick="closeNav()">Il metodo</a>
+      <a href="#risultati" onclick="closeNav()">Risultati</a>
+      <a href="#recensioni" onclick="closeNav()">Recensioni</a>
+      <a href="https://wa.me/393382475590" target="_blank" class="nav-cta">Prenota ora</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="images/hero.jpg" alt="Dr. Gianmarco Galderisi">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <img class="hero-logo" src="images/logo.png" alt="Gianmarco Galderisi">
+      <div class="eyebrow">Dr. Gianmarco Galderisi — Biologo Nutrizionista</div>
+      <h1>Trasformo <em>persone</em>,<br>non creo contenuti.</h1>
+      <p class="sub">L'allenamento vero, cucito su di te. Nutrizione sostenibile, non diete drastiche. Un percorso unico, non uno standard.</p>
+      <div class="hero-cta-row">
+        <a href="https://wa.me/393382475590" target="_blank" class="btn-primary">Prenota una consulenza</a>
+        <a href="#metodo" class="btn-ghost">Scopri il metodo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <span>Rinforzo, non promesse</span><span>Percorsi 1:1</span><span>Nutrizione flessibile</span><span>Risultati reali</span>
+    <span>Rinforzo, non promesse</span><span>Percorsi 1:1</span><span>Nutrizione flessibile</span><span>Risultati reali</span>
+  </div>
+</div>
+
+<!-- CHI SONO -->
+<section id="chisono">
+  <div class="wrap">
+    <div class="kicker reveal">Chi sono</div>
+    <h2 class="sec-title reveal">Non ti vendo una scorciatoia. Ti insegno a diventare forte, e a nutrirti con consapevolezza.</h2>
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="images/doctor.jpg" alt="Dr. Gianmarco Galderisi in studio">
+        <div class="tag">
+          <span class="order-num">Num. Iscrizione Ordine Nutrizionisti: AA_100852</span>
+          <b>Dott. Gianmarco Galderisi</b>Biologo Nutrizionista – Fitness Coach – Chinesiologo
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <p>Ti diranno che hai 4 ernie discali e non puoi allenarti in palestra, vorranno trasformarti in un pesce gettandoti in una piscina. Io lavoro diversamente: ascolto, guido, e ti rendo forte.</p>
+        <div class="about-quote">
+          <p>"Non c'è strada diversa dal rinforzo. Il miglioramento estetico è solo una conseguenza di tanti altri enormi passi che abbiamo fatto."</p>
+        </div>
+        <p>Il mio approccio unisce biologia della nutrizione e scienza dell'allenamento: due discipline che, se separate, funzionano poco. Non c'è nutrizione che tenga se i muscoli non li stimoli, e non c'è allenamento che regga senza un piano alimentare costruito sulla persona che hai davanti — non su uno standard.</p>
+        <p>Lavoro con chi vuole risultati veri e duraturi: postura, tono muscolare, forza, salute della schiena. La bilancia è solo un numero: quello che conta è il corpo nuovo che costruiamo insieme, settimana dopo settimana.</p>
+        <div class="credentials">
+          <div><b>Un percorso 1:1</b><span>Percorsi personalizzati, mai standard</span></div>
+          <div><b>Un percorso unico.</b><span>Seguito costantemente in presenza e online</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IL METODO -->
+<section id="metodo">
+  <div class="wrap">
+    <div class="kicker reveal">Il metodo</div>
+    <h2 class="sec-title reveal">Allenamento e nutrizione. Due metà dello stesso percorso.</h2>
+
+    <div class="method-intro">
+      <p class="reveal">Non esistono schede standard. Ogni percorso parte da un'<strong>analisi preliminare reale</strong>: obiettivi, stile di vita, livello attuale, storia clinica. Da lì costruiamo un piano che è veramente tuo — mai copiato, mai preconfezionato.</p>
+      <p class="reveal">Le due discipline lavorano insieme, mai separate: <strong>allenamento pesante</strong> per costruire forza, tono e postura, e <strong>nutrizione flessibile</strong> per sostenerlo nel tempo, senza sacrifici impossibili. Passa il mouse sulle due schede per scoprire come lavoro in ciascun ambito.</p>
+    </div>
+
+    <div class="flip-grid">
+      <div class="flip-card reveal" onclick="this.classList.toggle('tapped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front fit-bg">
+            <div class="flip-icon">01 — Allenamento</div>
+            <h3>Galderisi Fitness</h3>
+            <p>Cose fatte bene, cucite sulla persona e ripetute nel tempo.</p>
+            <div class="flip-hint">Passa il mouse per i dettagli →</div>
+          </div>
+          <div class="flip-face flip-back">
+            <h4>Come lavoro</h4>
+            <ul>
+              <li>Programmi costruiti sul tuo livello reale, non su modelli generici</li>
+              <li>Progressioni studiate nel tempo, mai improvvisate</li>
+              <li>Allenamento pesante: la via più efficace verso forza e postura</li>
+              <li>Correzione costante degli esercizi, anche a distanza</li>
+              <li>Obiettivi chiari e misurabili, fase dopo fase</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card reveal" onclick="this.classList.toggle('tapped')">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front nutri-bg">
+            <div class="flip-icon">02 — Nutrizione</div>
+            <h3>Galderisi Nutrition</h3>
+            <p>Mangia bene, senza stravolgere la tua routine.</p>
+            <div class="flip-hint">Passa il mouse per i dettagli →</div>
+          </div>
+          <div class="flip-face flip-back">
+            <h4>Come lavoro</h4>
+            <ul>
+              <li>Piani semplici, sostenibili, compatibili con la tua vita quotidiana</li>
+              <li>Basta diete drastiche: educazione alimentare, non solo dieta</li>
+              <li>Modifiche in corso d'opera, in base a come risponde il tuo corpo</li>
+              <li>Contatto diretto per ogni dubbio, ricette e liste della spesa</li>
+              <li>Strategie basate su esperienza clinica reale, non su format</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROCCIO / QUOTES -->
+<section id="approccio">
+  <div class="wrap">
+    <div class="kicker reveal">Filosofia</div>
+    <h2 class="sec-title reveal">Basta con questo peso forma!</h2>
+    <p class="sec-lede reveal">Cosa mi sentirai ripetere lavorando insieme...</p>
+    <div class="quote-list">
+      <div class="quote-row reveal">
+        <span class="mark">“</span>
+        <p>Qual è il mio peso forma? Ma cosa te ne frega — 7 mesi di lavoro per ritrovarsi sulla bilancia lo stesso peso? Per fortuna, con un corpo nuovo: nuova postura, nuova schiena, nuovo tono.</p>
+      </div>
+      <div class="quote-row reveal">
+        <span class="mark">“</span>
+        <p>Pulire, proporzionare ed elevare. Come sempre il focus sull'allenamento, quello pesante — quello fatto di cose fatte bene, cucite sulla persona e ripetute nel tempo.</p>
+      </div>
+      <div class="quote-row reveal">
+        <span class="mark">“</span>
+        <p>Non c'è nutrizione che tenga se i muscoli non li stimolate. Smettila di perdere tempo e rendi produttivi i tuoi sforzi.</p>
+      </div>
+      <div class="quote-row reveal">
+        <span class="mark">“</span>
+        <p>Puoi dedicarti del tempo o trovare scuse. Ci separano anche 10.000 km, ma lavoriamo a stretto contatto: feedback costanti, piccole modifiche per grandi risultati.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISULTATI -->
+<section id="risultati">
+  <div class="wrap">
+    <div class="kicker reveal">Casi reali</div>
+    <h2 class="sec-title reveal">Un percorso studiato per modellare il tuo corpo.</h2>
+    <p class="sec-lede reveal">Ogni trasformazione qui sotto è il risultato di mesi di allenamento costante e nutrizione costruita sulla persona.</p>
+
+    <div class="case-list">
+      <div class="case reveal">
+        <div class="case-photo"><img src="images/case1.jpg" alt="Trasformazione fisica cliente"></div>
+        <div class="case-copy">
+          <div class="case-index">Percorso completato</div>
+          <p><strong>Ti diranno che hai 4 ernie discali e non puoi allenarti in palestra, vorranno trasformarti in un pesce gettandoti in una piscina.</strong>
+Tu affidati a qualcuno che sappia ascoltarti, guidarti e renderti forte. Non c'è strada diversa dal rinforzo: il miglioramento estetico è solo una conseguenza di tanti altri enormi passi che abbiamo fatto.</p>
+          <div class="stat-badges">
+            <span class="badge down">Massa grassa persa</span>
+            <span class="badge down">Kg persi</span>
+            <span class="badge">Miglioramento posturale</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-photo"><img src="images/case2.jpg" alt="Trasformazione fisica cliente"></div>
+        <div class="case-copy">
+          <div class="case-index">Percorso completato</div>
+          <p><strong>Pulire, proporzionare ed elevare.</strong>
+Come sempre il focus resta sull'allenamento, quello pesante: cose fatte bene, cucite sulla persona e ripetute nel tempo. Il miglioramento estetico è solo la conseguenza di tanti altri passi fatti insieme.</p>
+          <div class="stat-badges">
+            <span class="badge down">Massa grassa persa</span>
+            <span class="badge">Massa muscolare guadagnata</span>
+            <span class="badge">Miglioramento posturale</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-photo"><img src="images/case3.jpg" alt="Trasformazione fisica cliente"></div>
+        <div class="case-copy">
+          <div class="case-index">Percorso completato</div>
+          <p><strong>Qual è il mio peso forma? Ma cosa te ne frega.</strong>
+Sette mesi di lavoro non si misurano su una bilancia. Si misurano in un corpo nuovo: una nuova postura, una nuova schiena, un fisico che finalmente risponde a ciò che chiedi.</p>
+          <div class="stat-badges">
+            <span class="badge down">Kg persi</span>
+            <span class="badge">Nuova postura</span>
+            <span class="badge">Tono muscolare</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-photo"><img src="images/case4.jpg" alt="Trasformazione fisica cliente"></div>
+        <div class="case-copy">
+          <div class="case-index">Percorso completato</div>
+          <p><strong>Su soggetti con poca massa muscolare l'allenamento svolge un ruolo fondamentale.</strong>
+In questi casi la dieta da sola fa ben poco. L'aumento della massa muscolare — alias aumento del tono muscolare, per le "muscolofobiche" — è fondamentale per una resa estetica piacevole: siamo sulla strada giusta.</p>
+          <div class="stat-badges">
+            <span class="badge">Massa muscolare guadagnata</span>
+            <span class="badge">Tono muscolare</span>
+            <span class="badge">Resa estetica migliorata</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-photo"><img src="images/case5.jpg" alt="Trasformazione fisica cliente"></div>
+        <div class="case-copy">
+          <div class="case-index">Percorso completato</div>
+          <p><strong>Puoi dedicarti del tempo, o trovare scuse.</strong>
+Davide ha famiglia e un giorno ha deciso di riscoprirsi atleta — prima nella testa, poi nel fisico. Ci separano più di 10.000 km, ma lavoriamo a stretto contatto: feedback costanti, piccole modifiche per grandi risultati. Corsa, calcio, palestra: inarrestabile.</p>
+          <div class="stat-badges">
+            <span class="badge down">Massa grassa persa</span>
+            <span class="badge">Massa muscolare guadagnata</span>
+            <span class="badge">Performance atletica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section id="recensioni">
+  <div class="wrap">
+    <div class="kicker">Recensioni</div>
+    <div class="rev-top">
+      <h2 class="sec-title reveal">Cosa dicono i pazienti</h2>
+      <div class="rev-score reveal">
+        <div class="num">4.9</div>
+        <div>
+          <span class="stars">★★★★★</span>
+          <span>su Google — basato sulle recensioni verificate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <span class="stars">★★★★★</span>
+        <p>Ero già stata paziente qualche anno fa ma solo per l'alimentazione. Con l'allenamento incluso il percorso è completamente diverso: risultati che non pensavo possibili.</p>
+        <div class="who">Roberta</div>
+      </div>
+      <div class="rev-card reveal">
+        <span class="stars">★★★★★</span>
+        <p>Finalmente un percorso costruito su di me e non su uno schema fisso. Feedback costanti, correzioni sugli esercizi, e un piano alimentare che riesco davvero a seguire.</p>
+        <div class="who">Paziente</div>
+      </div>
+      <div class="rev-card reveal">
+        <span class="stars">★★★★★</span>
+        <p>Ho smesso di rincorrere il numero sulla bilancia. Il corpo è cambiato, la postura è cambiata, e per la prima volta mi sento davvero forte.</p>
+        <div class="who">Paziente</div>
+      </div>
+    </div>
+
+    <div class="rev-cta reveal">
+      <a href="https://www.google.com/search?sca_esv=b7f6aa6e86ef303a&sxsrf=APpeQnsXJ9vFtMmrYsljPcC9pfCNfNRxuQ:1788217560942&q=recensioni+di+dott.+gianmarco+galderisi+nutrizionista+napoli&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_6utHE1GvLKn3rmDFyB8hII7wYyRwYYSN81dXa3HxDKa3jwCFiJ1qD1zfI1ONC1WdE_KKks%3D&uds=AJ5uw1-7bZp14Lrw1SvZjbG--o7uRuTpiYcnu_laKW3DUVuDw6rzujSg1gDGf1_uX-YxvBcpyWX-Xhu_kHx_n2kS9BdGzP_7Rao7zOk9KxMDRfIX4tOS_jZUOvN8Sa_ruSwavkAsWxrHwqL_20an2TXcJmzx61ycRBUPRRhJK-5Aple73u74sgQ&sa=X&ved=2ahUKEwiN1oDE_cuWAxUNh_0HHZPYD0oQ3PALegQIKxAF&biw=1792&bih=891&dpr=2" target="_blank">Leggi tutte le recensioni su Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section id="prenota">
+  <div class="wrap prenota-inner">
+    <div>
+      <div class="kicker reveal">Prenota</div>
+      <h2 class="reveal">Inizia il tuo percorso oggi.</h2>
+      <p class="sub reveal">Scrivimi direttamente su WhatsApp per una prima valutazione: obiettivi, livello attuale, e come possiamo costruire insieme un piano che è veramente tuo.</p>
+      <a class="wa-btn reveal" href="https://wa.me/393382475590" target="_blank">
+        <svg viewBox="0 0 24 24" fill="#111"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.873.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.765.46 3.482 1.334 4.997L2 22l5.128-1.317A9.955 9.955 0 0 0 12.004 22c5.523 0 10-4.477 10-10s-4.477-9.997-10-9.997zm0 18.166a8.14 8.14 0 0 1-4.15-1.135l-.298-.177-3.043.782.812-2.968-.194-.306a8.15 8.15 0 0 1-1.257-4.365c0-4.508 3.67-8.176 8.183-8.176 4.512 0 8.182 3.668 8.182 8.176 0 4.508-3.67 8.169-8.235 8.169z"/></svg>
+        Scrivimi su WhatsApp
+      </a>
+    </div>
+    <div class="prenota-steps reveal">
+      <div><b>01 — Contatto</b><span>Scrivi su WhatsApp con obiettivi e disponibilità.</span></div>
+      <div><b>02 — Valutazione</b><span>Analisi preliminare del tuo livello e stile di vita.</span></div>
+      <div><b>03 — Piano</b><span>Ricevi il tuo percorso su misura, allenamento e nutrizione.</span></div>
+      <div><b>04 — Percorso</b><span>Sei seguito costantemente, con modifiche in corso d'opera.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="fb">
+      <img src="images/logo.png" alt="logo">
+      <span>Dr. Gianmarco Galderisi — Biologo Nutrizionista</span>
+    </div>
+    <div class="foot-links">
+      <a href="#home">Home</a>
+      <a href="#chisono">Chi sono</a>
+      <a href="#metodo">Metodo</a>
+      <a href="https://wa.me/393382475590" target="_blank">Prenota</a>
+    </div>
+    <div>© <span id="year"></span> Gianmarco Galderisi</div>
+    <div class="foot-piva">P.IVA 10637701219</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/393382475590" target="_blank" aria-label="Scrivi su WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#111"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.873.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.765.46 3.482 1.334 4.997L2 22l5.128-1.317A9.955 9.955 0 0 0 12.004 22c5.523 0 10-4.477 10-10s-4.477-9.997-10-9.997zm0 18.166a8.14 8.14 0 0 1-4.15-1.135l-.298-.177-3.043.782.812-2.968-.194-.306a8.15 8.15 0 0 1-1.257-4.365c0-4.508 3.67-8.176 8.183-8.176 4.512 0 8.182 3.668 8.182 8.176 0 4.508-3.67 8.169-8.235 8.169z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  function closeNav(){ navLinks.classList.remove('open'); }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
