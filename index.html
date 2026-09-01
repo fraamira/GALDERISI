@@ -294,6 +294,14 @@
   #recensioni .sec-title{color:var(--white);}
   .rev-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
   .elfsight-widget-wrap{margin-top:48px;}
+  /* Hide the Elfsight "Load More" pagination button.
+     Hiding the free-plan badge violates Elfsight's terms — only remove it
+     by upgrading to a paid plan, not with CSS. */
+  .elfsight-widget-wrap [class*="load-more" i],
+  .elfsight-widget-wrap [class*="loadmore" i],
+  .elfsight-widget-wrap button[class*="more" i]{
+    display:none !important;
+  }
   .rev-cta{margin-top:56px;text-align:center;}
   .rev-cta a{
     display:inline-block;background:var(--white);color:var(--blue-deep);padding:16px 34px;font-weight:700;
@@ -663,6 +671,30 @@ Davide ha famiglia e un giorno ha deciso di riscoprirsi atleta — prima nella t
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:0.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Hide the Elfsight "Load More" button and the free-plan branding badge
+  // by matching their text/link, as a fallback in case Elfsight's class
+  // names change. Note: hiding the badge goes against Elfsight's free-plan
+  // terms — Elfsight may detect this and disable the widget.
+  const hideElfsightExtras = () => {
+    const wrap = document.querySelector('.elfsight-widget-wrap');
+    if (!wrap) return;
+    wrap.querySelectorAll('button, a, div, span').forEach(el => {
+      const text = el.textContent.trim();
+      if (el.children.length === 0 && text === 'Load More') {
+        el.style.display = 'none';
+      }
+    });
+    wrap.querySelectorAll('a[href*="elfsight" i]').forEach(el => {
+      const badge = el.closest('div,span,a');
+      (badge || el).style.display = 'none';
+    });
+  };
+  const elfsightObserver = new MutationObserver(hideElfsightExtras);
+  const elfsightWrap = document.querySelector('.elfsight-widget-wrap');
+  if (elfsightWrap) {
+    elfsightObserver.observe(elfsightWrap, { childList: true, subtree: true });
+  }
 </script>
 </body>
 </html>
